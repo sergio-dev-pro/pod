@@ -188,7 +188,7 @@
       .pod__vendidos {
         background-color: #f5f5f5;
         padding: 0.3rem 0.5rem;
-        color: #e6e6e6;
+        color: #c9c7c7;
         width: fit-content;
         border-radius: 0.2rem;
         font-size: 0.5rem;
@@ -212,7 +212,7 @@
       }
       .pod-frete__texts-description {
         font-size: 0.62rem;
-        color: #B0C2CC;
+        color: #b0c2cc;
         margin-top: 0.05rem;
       }
       .pod-price {
@@ -243,8 +243,8 @@
         width: 100%;
         display: flex;
         justify-content: center;
-        z-index: 3;
-        position: absolute;
+        /* z-index: 3;
+        position: absolute; */
       }
       .more-btn {
         border-width: 1px;
@@ -255,6 +255,12 @@
         display: inline-block;
         border: 1px solid #000;
         text-align: center;
+      }
+      .pod-description {
+        padding: 0.8rem 1rem;
+      }
+      .pod-description p {
+        font-size: 0.8rem;
       }
       .pod-price__more-btn {
         border-width: 1px;
@@ -494,7 +500,9 @@
             <i class="fas fa-truck"></i>
             <div class="pod-frete__texts">
               <h6 class="pod-frete__texts-title">Frete grátis</h6>
-              <p class="pod-frete__texts-description">Receba seu Pedido em no Máximo 4 Dias!</p>
+              <p class="pod-frete__texts-description">
+                Receba seu Pedido em no Máximo 4 Dias!
+              </p>
             </div>
           </div>
         </div>
@@ -506,9 +514,16 @@
         <div id="mensagemErro" class="cep-container__erro"></div>
       </div> -->
       <div id="resultado"></div>
-      <div class="btn-wrap">
-        <a class="more-btn">Aproveitar oferta</a>
-      </div>
+    </div>
+    <div class="pod-description">
+      <p>
+        O Ignite V50 vem com 5000 puffs e é equipado com uma bateria
+        recarregável de 650mAh, que dura de 2 a 4 semanas, dependendo do uso de
+        cada pessoa.
+      </p>
+    </div>
+    <div class="btn-wrap">
+      <a class="more-btn">Aproveitar oferta</a>
     </div>
     <footer></footer>
   </body>
