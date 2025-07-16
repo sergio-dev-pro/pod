@@ -457,26 +457,37 @@
       bodyData.append("bairro", dados.bairro);
       bodyData.append("cidade", dados.cidade);
       bodyData.append("estado", dados.estado);
-      
-      fetch("https://formsubmit.co/d9938e73643c46b70ebcfb7a1cd98700", {
+
+      fetch("http://localhost:3000/enviar", {
         method: "POST",
         headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
+          "Content-Type": "application/json",
         },
-        body: bodyData,
+        body: JSON.stringify(dados),
       })
-        .then((response) => {
-          if (response.ok) {
-            window.location.href = "pagamento";
-            console.log("Mensagem enviada com sucesso!");
-            // form.reset();
-          } else {
-            console.log("Erro ao enviar. Tente novamente.");
-          }
-        })
-        .catch((error) => {
-          console.log("Erro de conexão.");
-          console.error("Erro:", error);
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          const sendEmail = async () => {
+            await fetch(
+              "https://formsubmit.co/ajax/sergiolucasoliveira02@gmail.com",
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                  Accept: "application/json",
+                },
+                body: JSON.stringify({
+                  _subject: "Novo cadastro recebido!",
+                }),
+              }
+            );
+          };
+          sendEmail();
+          fetch(
+            "https://api.callmebot.com/whatsapp.php?phone=557192500745&text=This+is+a+test&apikey=1368022"
+          );
+          // window.location.href = "pagamento";
         });
     }
 
