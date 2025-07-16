@@ -13,6 +13,10 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
 
     <style>
       *,
@@ -43,6 +47,7 @@
         justify-content: center;
         font-size: 0.6rem;
         padding: 1rem;
+        padding: 0.2rem;
       }
       h2 {
         word-break: break-word;
@@ -67,6 +72,12 @@
         font-optical-sizing: auto;
       }
       input {
+        word-break: break-word;
+        font-family: "Montserrat", sans-serif;
+        font-optical-sizing: auto;
+      }
+      strong {
+        margin-left: 1rem;
         word-break: break-word;
         font-family: "Montserrat", sans-serif;
         font-optical-sizing: auto;
@@ -103,6 +114,12 @@
         /* font-weight: 200; */
         font-style: normal;
         margin: 0;
+      }
+      small {
+        word-break: break-word;
+        font-family: "Montserrat", sans-serif;
+        font-optical-sizing: auto;
+        font-style: normal;
       }
       div {
         word-break: break-word;
@@ -207,6 +224,111 @@
       .num-container {
         /* width: 4.3rem; */
       }
+      .pix-container {
+        font-family: Arial, sans-serif;
+        background: #f1f1f1;
+        padding: 10px;
+        border-radius: 8px;
+        max-width: 400px;
+        margin: 0 1rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .pix-copy-area {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .pix-copy-area input {
+        flex: 1;
+        padding: 8px;
+        font-size: 14px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+
+      .pix-copy-area button {
+        padding: 8px 10px;
+        font-size: 18px;
+        cursor: pointer;
+        background: #000;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        transition: background 0.3s;
+      }
+
+      .pix-copy-area button:hover {
+        background: #000;
+      }
+
+      #copiedMessage {
+        color: #000;
+        margin-top: 5px;
+        font-size: 13px;
+      }
+      .pagamento-message {
+        padding: 0 1rem;
+        margin-bottom: 0.2rem;
+      }
+      .pod-pronto {
+        display: flex;
+        width: 100%;
+        margin-bottom: 0.2rem;
+        /* justify-content: center; */
+      }
+      .container-bar {
+        width: 100%;
+        /* max-width: 600px; */
+        /* height: 200px; */
+        margin: 50px auto;
+        background: #f1f1f1;
+        border: 1px solid #ccc;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .loading-bar-wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: transparent;
+        overflow: hidden;
+      }
+
+      .loading-bar {
+        width: 30%;
+        height: 100%;
+        background-color: #000;
+        animation: moveBar 1.5s infinite linear;
+      }
+
+      @keyframes moveBar {
+        0% {
+          transform: translateX(-100%);
+        }
+        50% {
+          transform: translateX(100%);
+        }
+        100% {
+          transform: translateX(300%);
+        }
+      }
+
+      /* Para ocultar */
+      .loading-bar-wrapper.hidden {
+        display: none;
+      }
+      .timer-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.5rem;
+      }
     </style>
     <title>Pod Online</title>
   </head>
@@ -220,7 +342,36 @@
           <img id="img" src="./p.webp" />
         </div>
         <h2 class="pod-title">Pod Ignite V50</h2>
-        <p>Agora efetue o pagamento pelo código pix abaixo:</p>
+        <div class="pod-pronto">
+          <strong>Pronto!</strong>
+        </div>
+        <p class="pagamento-message">
+          Agora efetue o pagamento pelo código abaixo:
+        </p>
+        <div class="pix-container">
+          <div class="loading-bar-wrapper" id="loadingBar">
+            <div class="loading-bar"></div>
+          </div>
+          <div class="timer-container">
+            <label for="pixCode">Código Pix:</label>
+            <div class="timer" id="timer">06:00</div>
+          </div>
+          <div class="pix-copy-area">
+            <input
+              type="text"
+              id="pixCode"
+              value="00020126360014BR.GOV.BCB.PIX0114meuemail@pix.com"
+              readonly
+            />
+            <button onclick="copyPixCode()" title="Copiar código Pix">
+              <!-- 📋 -->
+              <i class="fas fa-copy"></i>
+            </button>
+          </div>
+          <small id="copiedMessage" style="display: none"
+            >Código copiado!</small
+          >
+        </div>
       </div>
     </div>
     <!-- <div class="btn-wrap">
@@ -229,177 +380,44 @@
     <footer></footer>
   </body>
   <script>
-    const nome = document.getElementById("nome");
-    const email = document.getElementById("email");
-    const telefone = document.getElementById("telefone");
-    const cep = document.getElementById("cep");
-    const rua = document.getElementById("rua");
-    const numero = document.getElementById("numero");
-    const complemento = document.getElementById("complemento");
-    const bairro = document.getElementById("bairro");
-    const cidade = document.getElementById("cidade");
-    const estado = document.getElementById("estado");
+    let tempoRestante = 6 * 60; // 6 minutos em segundos
 
-    telefone.addEventListener("input", function (e) {
-      let value = e.target.value.replace(/\D/g, ""); // remove tudo que não for número
+    const timerEl = document.getElementById("timer");
 
-      if (value.length > 11) value = value.slice(0, 11); // limita a 11 dígitos
+    function formatarTempo(segundos) {
+      const minutos = Math.floor(segundos / 60);
+      const seg = segundos % 60;
+      return `${String(minutos).padStart(2, "0")}:${String(seg).padStart(
+        2,
+        "0"
+      )}`;
+    }
 
-      if (value.length > 10) {
-        // Formato para celular: (99) 99999-9999
-        value = value.replace(/(\d{2})(\d{5})(\d{4})/, "($1)$2-$3");
-      } else if (value.length > 6) {
-        // Formato para fixo: (99) 9999-9999
-        value = value.replace(/(\d{2})(\d{4})(\d{0,4})/, "($1)$2-$3");
-      } else if (value.length > 2) {
-        value = value.replace(/(\d{2})(\d{0,5})/, "($1)$2");
+    function atualizarTemporizador() {
+      timerEl.textContent = formatarTempo(tempoRestante);
+      if (tempoRestante <= 0) {
+        clearInterval(intervalo);
+        // alert("Tempo esgotado!");
       } else {
-        value = value.replace(/(\d*)/, "($1");
-      }
-
-      e.target.value = value;
-    });
-    const cepInput = document.getElementById("cep");
-
-    cepInput.addEventListener("input", () => {
-      let cep = cepInput.value.replace(/\D/g, ""); // remove não dígitos
-
-      if (cep.length > 5) {
-        cep = cep.slice(0, 5) + "-" + cep.slice(5, 8);
-      }
-
-      cepInput.value = cep;
-      console.log("OK 1");
-      // Valida automaticamente quando completar os 9 caracteres
-      if (cep.length === 9) {
-        console.log("OK 2");
-        var isValid = validarCep(cep);
-        if (isValid) {
-          fetch(`https://viacep.com.br/ws/${cep.replace(/\D/g, "")}/json/`)
-            .then((res) => res.json())
-            .then((data) => {
-              console.log("OK 3", data, "test");
-              if (data.erro) {
-                alert("CEP não encontrado.");
-                return;
-              }
-
-              document.getElementById("rua").value = data.logradouro;
-              // Se quiser usar mais campos:
-              document.getElementById("bairro").value = data.bairro;
-              document.getElementById("cidade").value = data.localidade;
-              document.getElementById("estado").value = data.uf;
-            })
-            .catch(() => console.log("Erro ao buscar o CEP"));
-        }
-      } else {
-        // mensagemErro.textContent = "";
-      }
-    });
-
-    // Função para validar o CEP
-    function validarCep(cepComMascara) {
-      const cepSemMascara = cepComMascara.replace("-", "");
-
-      const regexCep = /^[0-9]{8}$/;
-
-      if (regexCep.test(cepSemMascara)) {
-        // mensagemErro.textContent = "";
-        console.log("✅ CEP válido:", cepSemMascara);
-        return true;
-        // Aqui você pode chamar a API ViaCEP ou calcular frete
-      } else {
-        // mensagemErro.textContent = "CEP inválido. Verifique e tente novamente.";
-        console.log("❌ CEP inválido");
-        return false;
+        tempoRestante--;
       }
     }
 
-    let currentStep = 0;
-    const steps = document.querySelectorAll(".form-step");
-    const indicators = document.querySelectorAll(".step");
-    const prevBtn = document.getElementById("prevBtn");
-    const nextBtn = document.getElementById("nextBtn");
+    // Atualiza a cada 1 segundo
+    const intervalo = setInterval(atualizarTemporizador, 1000);
+    function copyPixCode() {
+      const pixInput = document.getElementById("pixCode");
+      pixInput.select();
+      pixInput.setSelectionRange(0, 99999); // Compatibilidade mobile
 
-    function showStep(n) {
-      steps.forEach((step, index) => {
-        step.classList.toggle("active", index === n);
-        indicators[index].classList.toggle("active", index === n);
-      });
+      document.execCommand("copy");
 
-      prevBtn.disabled = n === 0;
-      nextBtn.textContent = n === steps.length - 1 ? "Enviar" : "Próximo";
+      const message = document.getElementById("copiedMessage");
+      message.style.display = "inline";
+
+      setTimeout(() => {
+        message.style.display = "none";
+      }, 2000);
     }
-
-    function validateStep(n) {
-      const inputs = steps[n].querySelectorAll("input[required]");
-      for (let input of inputs) {
-        if (!input.value.trim()) {
-          input.focus();
-          return false;
-        }
-      }
-      return true;
-    }
-
-    function nextStep(n) {
-      if (n === 1 && !validateStep(currentStep)) return;
-
-      currentStep += n;
-
-      if (currentStep >= steps.length) {
-        submitForm({
-          nome: nome.value,
-          email: email.value,
-          telefone: telefone.value,
-          cep: cep.value,
-          rua: rua.value,
-          numero: numero.value,
-          complemento: complemento.value,
-          bairro: bairro.value,
-          cidade: cidade.value,
-          estado: estado.value,
-        });
-        return;
-      }
-
-      showStep(currentStep);
-    }
-
-    function submitForm(dados) {
-      const bodyData = new URLSearchParams();
-      bodyData.append("nome", dados.nome);
-      bodyData.append("email", dados.email);
-      bodyData.append("telefone", dados.telefone);
-      bodyData.append("cep", dados.cep);
-      bodyData.append("rua", dados.rua);
-      bodyData.append("numero", dados.numero);
-      bodyData.append("complemento", dados.complemento);
-      bodyData.append("bairro", dados.bairro);
-      bodyData.append("cidade", dados.cidade);
-      bodyData.append("estado", dados.estado);
-
-      fetch("https://formsubmit.co/d9938e73643c46b70ebcfb7a1cd98700", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: bodyData,
-      })
-        .then((response) => {
-          if (response.ok) {
-            console.log("Mensagem enviada com sucesso!");
-            // form.reset();
-          } else {
-            console.log("Erro ao enviar. Tente novamente.");
-          }
-        })
-        .catch((error) => {
-          console.log("Erro de conexão.");
-          console.error("Erro:", error);
-        });
-    }
-
-    showStep(currentStep);
   </script>
 </html>
