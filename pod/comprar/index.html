@@ -458,7 +458,7 @@
       bodyData.append("cidade", dados.cidade);
       bodyData.append("estado", dados.estado);
 
-      fetch("http://localhost:3000/enviar", {
+      fetch("https://pod-server-hdkh.onrender.com/enviar", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
