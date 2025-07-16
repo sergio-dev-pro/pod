@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: inherit;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        box-sizing: border-box;
+        overflow-x: hidden;
+      }
+      header {
+        font-family: Assistant, sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        /* letter-spacing: calc(var(--font-heading-scale) * 0.06rem); */
+        color: rgb(18, 18, 18);
+        line-height: calc(1 + 0.3 / max(1, 1));
+        word-break: break-word;
+        font-family: "Montserrat", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 200;
+        font-style: normal;
+        display: flex;
+        justify-content: center;
+        font-size: 0.6rem;
+        padding: 1rem;
+      }
+      h2 {
+        word-break: break-word;
+        font-family: "Montserrat", sans-serif;
+        font-optical-sizing: auto;
+        /* font-weight: 200; */
+        font-style: normal;
+      }
+      span {
+        word-break: break-word;
+        font-family: "Montserrat", sans-serif;
+        font-optical-sizing: auto;
+      }
+      button {
+        word-break: break-word;
+        font-family: "Montserrat", sans-serif;
+        font-optical-sizing: auto;
+      }
+      label {
+        word-break: break-word;
+        font-family: "Montserrat", sans-serif;
+        font-optical-sizing: auto;
+      }
+      input {
+        word-break: break-word;
+        font-family: "Montserrat", sans-serif;
+        font-optical-sizing: auto;
+      }
+      a {
+        word-break: break-word;
+        font-family: "Montserrat", sans-serif;
+        font-optical-sizing: auto;
+        color: inherit;
+        cursor: pointer;
+        text-decoration: unset;
+      }
+      h5 {
+        word-break: break-word;
+        font-family: "Montserrat", sans-serif;
+        font-optical-sizing: auto;
+        /* font-weight: 200; */
+        font-style: normal;
+        font-size: 1rem;
+        color: #fff;
+      }
+      h6 {
+        word-break: break-word;
+        font-family: "Montserrat", sans-serif;
+        font-optical-sizing: auto;
+        /* font-weight: 200; */
+        font-style: normal;
+        margin: 0;
+      }
+      p {
+        word-break: break-word;
+        font-family: "Montserrat", sans-serif;
+        font-optical-sizing: auto;
+        /* font-weight: 200; */
+        font-style: normal;
+        margin: 0;
+      }
+      div {
+        word-break: break-word;
+        font-family: "Montserrat", sans-serif;
+        font-optical-sizing: auto;
+        font-style: normal;
+      }
+      footer {
+        height: 1rem;
+      }
+      .pod-title {
+        text-align: center;
+      }
+      .pod-img {
+        display: flex;
+        justify-content: center;
+      }
+      .form-container {
+        background: white;
+        padding: 0 30px 30px 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 500px;
+      }
+
+      .step-indicator {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 6px;
+      }
+
+      .step {
+        flex: 1;
+        padding: 10px;
+        text-align: center;
+        background: #e0e0e0;
+        border-radius: 5px;
+        color: #666;
+        font-weight: bold;
+        margin: 0 5px;
+      }
+
+      .step.active {
+        background: #000;
+        color: white;
+      }
+
+      .form-step {
+        display: none;
+      }
+
+      .form-step.active {
+        display: block;
+      }
+
+      label {
+        display: block;
+        margin-top: 9px;
+      }
+      .first-label {
+        margin-top: 30px;
+      }
+
+      input {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      .buttons {
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      button {
+        padding: 10px 20px;
+        border: none;
+        background: #000;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      button:disabled {
+        background: #aaa;
+        cursor: not-allowed;
+      }
+      .rua-e-num {
+        display: grid;
+        grid-template-columns: 1fr 4.2rem;
+        gap: 0.8rem;
+      }
+      .cidade-e-estado {
+        display: grid;
+        grid-template-columns: 1fr 4rem;
+        gap: 0.8rem;
+      }
+      .num-container {
+        /* width: 4.3rem; */
+      }
+    </style>
+    <title>Pod Online</title>
+  </head>
+  <body>
+    <header style="background-color: #ffffff">
+      <span>Salvador - BA</span>
+    </header>
+    <div class="pod">
+      <div class="pod-info">
+        <div class="pod-img">
+          <img id="img" src="./p.webp" />
+        </div>
+        <h2 class="pod-title">Pod Ignite V50</h2>
+        <p>Agora efetue o pagamento pelo código pix abaixo:</p>
+      </div>
+    </div>
+    <!-- <div class="btn-wrap">
+      <a class="more-btn">Aproveitar oferta</a>
+    </div> -->
+    <footer></footer>
+  </body>
+  <script>
+    const nome = document.getElementById("nome");
+    const email = document.getElementById("email");
+    const telefone = document.getElementById("telefone");
+    const cep = document.getElementById("cep");
+    const rua = document.getElementById("rua");
+    const numero = document.getElementById("numero");
+    const complemento = document.getElementById("complemento");
+    const bairro = document.getElementById("bairro");
+    const cidade = document.getElementById("cidade");
+    const estado = document.getElementById("estado");
+
+    telefone.addEventListener("input", function (e) {
+      let value = e.target.value.replace(/\D/g, ""); // remove tudo que não for número
+
+      if (value.length > 11) value = value.slice(0, 11); // limita a 11 dígitos
+
+      if (value.length > 10) {
+        // Formato para celular: (99) 99999-9999
+        value = value.replace(/(\d{2})(\d{5})(\d{4})/, "($1)$2-$3");
+      } else if (value.length > 6) {
+        // Formato para fixo: (99) 9999-9999
+        value = value.replace(/(\d{2})(\d{4})(\d{0,4})/, "($1)$2-$3");
+      } else if (value.length > 2) {
+        value = value.replace(/(\d{2})(\d{0,5})/, "($1)$2");
+      } else {
+        value = value.replace(/(\d*)/, "($1");
+      }
+
+      e.target.value = value;
+    });
+    const cepInput = document.getElementById("cep");
+
+    cepInput.addEventListener("input", () => {
+      let cep = cepInput.value.replace(/\D/g, ""); // remove não dígitos
+
+      if (cep.length > 5) {
+        cep = cep.slice(0, 5) + "-" + cep.slice(5, 8);
+      }
+
+      cepInput.value = cep;
+      console.log("OK 1");
+      // Valida automaticamente quando completar os 9 caracteres
+      if (cep.length === 9) {
+        console.log("OK 2");
+        var isValid = validarCep(cep);
+        if (isValid) {
+          fetch(`https://viacep.com.br/ws/${cep.replace(/\D/g, "")}/json/`)
+            .then((res) => res.json())
+            .then((data) => {
+              console.log("OK 3", data, "test");
+              if (data.erro) {
+                alert("CEP não encontrado.");
+                return;
+              }
+
+              document.getElementById("rua").value = data.logradouro;
+              // Se quiser usar mais campos:
+              document.getElementById("bairro").value = data.bairro;
+              document.getElementById("cidade").value = data.localidade;
+              document.getElementById("estado").value = data.uf;
+            })
+            .catch(() => console.log("Erro ao buscar o CEP"));
+        }
+      } else {
+        // mensagemErro.textContent = "";
+      }
+    });
+
+    // Função para validar o CEP
+    function validarCep(cepComMascara) {
+      const cepSemMascara = cepComMascara.replace("-", "");
+
+      const regexCep = /^[0-9]{8}$/;
+
+      if (regexCep.test(cepSemMascara)) {
+        // mensagemErro.textContent = "";
+        console.log("✅ CEP válido:", cepSemMascara);
+        return true;
+        // Aqui você pode chamar a API ViaCEP ou calcular frete
+      } else {
+        // mensagemErro.textContent = "CEP inválido. Verifique e tente novamente.";
+        console.log("❌ CEP inválido");
+        return false;
+      }
+    }
+
+    let currentStep = 0;
+    const steps = document.querySelectorAll(".form-step");
+    const indicators = document.querySelectorAll(".step");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+
+    function showStep(n) {
+      steps.forEach((step, index) => {
+        step.classList.toggle("active", index === n);
+        indicators[index].classList.toggle("active", index === n);
+      });
+
+      prevBtn.disabled = n === 0;
+      nextBtn.textContent = n === steps.length - 1 ? "Enviar" : "Próximo";
+    }
+
+    function validateStep(n) {
+      const inputs = steps[n].querySelectorAll("input[required]");
+      for (let input of inputs) {
+        if (!input.value.trim()) {
+          input.focus();
+          return false;
+        }
+      }
+      return true;
+    }
+
+    function nextStep(n) {
+      if (n === 1 && !validateStep(currentStep)) return;
+
+      currentStep += n;
+
+      if (currentStep >= steps.length) {
+        submitForm({
+          nome: nome.value,
+          email: email.value,
+          telefone: telefone.value,
+          cep: cep.value,
+          rua: rua.value,
+          numero: numero.value,
+          complemento: complemento.value,
+          bairro: bairro.value,
+          cidade: cidade.value,
+          estado: estado.value,
+        });
+        return;
+      }
+
+      showStep(currentStep);
+    }
+
+    function submitForm(dados) {
+      const bodyData = new URLSearchParams();
+      bodyData.append("nome", dados.nome);
+      bodyData.append("email", dados.email);
+      bodyData.append("telefone", dados.telefone);
+      bodyData.append("cep", dados.cep);
+      bodyData.append("rua", dados.rua);
+      bodyData.append("numero", dados.numero);
+      bodyData.append("complemento", dados.complemento);
+      bodyData.append("bairro", dados.bairro);
+      bodyData.append("cidade", dados.cidade);
+      bodyData.append("estado", dados.estado);
+
+      fetch("https://formsubmit.co/d9938e73643c46b70ebcfb7a1cd98700", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: bodyData,
+      })
+        .then((response) => {
+          if (response.ok) {
+            console.log("Mensagem enviada com sucesso!");
+            // form.reset();
+          } else {
+            console.log("Erro ao enviar. Tente novamente.");
+          }
+        })
+        .catch((error) => {
+          console.log("Erro de conexão.");
+          console.error("Erro:", error);
+        });
+    }
+
+    showStep(currentStep);
+  </script>
+</html>
