@@ -457,9 +457,7 @@
       bodyData.append("bairro", dados.bairro);
       bodyData.append("cidade", dados.cidade);
       bodyData.append("estado", dados.estado);
-
-      window.location.href = "pagamento";
-      return;
+      
       fetch("https://formsubmit.co/d9938e73643c46b70ebcfb7a1cd98700", {
         method: "POST",
         headers: {
