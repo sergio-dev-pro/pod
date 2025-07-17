@@ -22,14 +22,17 @@
       *,
       *::before,
       *::after {
+        -webkit-box-sizing: inherit;
         box-sizing: inherit;
       }
       body {
         margin: 0;
         padding: 0;
         height: 100%;
+        -webkit-box-sizing: border-box;
         box-sizing: border-box;
         overflow-x: hidden;
+        background-color: white;
       }
       header {
         font-family: Assistant, sans-serif;
@@ -43,7 +46,11 @@
         font-optical-sizing: auto;
         font-weight: 200;
         font-style: normal;
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
         justify-content: center;
         font-size: 0.6rem;
         padding: 1rem;
@@ -134,25 +141,36 @@
         text-align: center;
       }
       .pod-img {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
         justify-content: center;
       }
       .form-container {
         background: white;
         padding: 0 30px 30px 30px;
         border-radius: 10px;
+        -webkit-box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         width: 100%;
         max-width: 500px;
       }
 
       .step-indicator {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
         justify-content: space-between;
         margin-bottom: 6px;
       }
 
       .step {
+        -webkit-box-flex: 1;
+        -ms-flex: 1;
         flex: 1;
         padding: 10px;
         text-align: center;
@@ -194,7 +212,11 @@
 
       .buttons {
         margin-top: 20px;
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
         justify-content: space-between;
       }
 
@@ -212,12 +234,16 @@
         cursor: not-allowed;
       }
       .rua-e-num {
+        display: -ms-grid;
         display: grid;
+        -ms-grid-columns: 1fr 0.8rem 4.2rem;
         grid-template-columns: 1fr 4.2rem;
         gap: 0.8rem;
       }
       .cidade-e-estado {
+        display: -ms-grid;
         display: grid;
+        -ms-grid-columns: 1fr 0.8rem 4rem;
         grid-template-columns: 1fr 4rem;
         gap: 0.8rem;
       }
@@ -236,12 +262,18 @@
       }
 
       .pix-copy-area {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
         align-items: center;
         gap: 8px;
       }
 
       .pix-copy-area input {
+        -webkit-box-flex: 1;
+        -ms-flex: 1;
         flex: 1;
         padding: 8px;
         font-size: 14px;
@@ -257,6 +289,8 @@
         color: white;
         border: none;
         border-radius: 4px;
+        -webkit-transition: background 0.3s;
+        -o-transition: background 0.3s;
         transition: background 0.3s;
       }
 
@@ -274,6 +308,8 @@
         margin-bottom: 0.2rem;
       }
       .pod-pronto {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
         width: 100%;
         margin-bottom: 0.2rem;
@@ -304,17 +340,36 @@
         width: 30%;
         height: 100%;
         background-color: #000;
+        -webkit-animation: moveBar 1.5s infinite linear;
         animation: moveBar 1.5s infinite linear;
+      }
+
+      @-webkit-keyframes moveBar {
+        0% {
+          -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
+        }
+        50% {
+          -webkit-transform: translateX(100%);
+          transform: translateX(100%);
+        }
+        100% {
+          -webkit-transform: translateX(300%);
+          transform: translateX(300%);
+        }
       }
 
       @keyframes moveBar {
         0% {
+          -webkit-transform: translateX(-100%);
           transform: translateX(-100%);
         }
         50% {
+          -webkit-transform: translateX(100%);
           transform: translateX(100%);
         }
         100% {
+          -webkit-transform: translateX(300%);
           transform: translateX(300%);
         }
       }
@@ -324,8 +379,14 @@
         display: none;
       }
       .timer-container {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
         justify-content: space-between;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
         align-items: center;
         margin-bottom: 0.5rem;
       }

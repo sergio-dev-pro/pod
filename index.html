@@ -13,14 +13,17 @@
       *,
       *::before,
       *::after {
+        -webkit-box-sizing: inherit;
         box-sizing: inherit;
       }
       body {
         margin: 0;
         padding: 0;
         height: 100%;
+        -webkit-box-sizing: border-box;
         box-sizing: border-box;
         overflow-x: hidden;
+        background-color: white;
       }
       header {
         font-family: Assistant, sans-serif;
@@ -34,7 +37,11 @@
         font-optical-sizing: auto;
         font-weight: 200;
         font-style: normal;
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
         justify-content: center;
         font-size: 0.6rem;
         padding: 0.2rem;
@@ -77,8 +84,13 @@
         height: 1rem;
       }
       .banner {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
         position: relative;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
         flex-direction: column;
         z-index: auto;
         isolation: isolate;
@@ -100,17 +112,24 @@
         max-width: 1894px;
         max-height: 799px;
         height: auto;
+        -o-object-fit: cover;
         object-fit: cover;
         display: block;
       }
       .banner__content {
         padding: 0;
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
         bottom: 0;
         top: 20;
         position: absolute;
         width: 100%;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
         align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
         justify-content: center;
         z-index: 2;
         margin-bottom: 1rem;
@@ -127,7 +146,7 @@
       .pod-info {
         padding-left: 1rem;
         position: relative;
-        height: 90vw;
+        /* height: 90vw; */
       }
       .pod-title {
         font-size: 1.6rem;
@@ -136,9 +155,13 @@
         z-index: 2;
       }
       .pod-img {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
         justify-content: center;
-        position: absolute;
+        /* position: absolute; */
       }
       .pod-img img {
         width: 100%;
@@ -153,8 +176,12 @@
         z-index: 2;
         bottom: 0;
         left: 0;
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
         width: 100%;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
         align-items: center;
         padding-left: 1rem;
       }
@@ -169,7 +196,11 @@
         font-size: 1rem;
       }
       .prices {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
+        -webkit-box-pack: start;
+        -ms-flex-pack: start;
         justify-content: flex-start;
         margin-left: 1rem;
         width: 100%;
@@ -177,7 +208,11 @@
       .btn-wrap {
         margin-top: 1.5rem;
         width: 100%;
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
         justify-content: center;
         z-index: 3;
         position: absolute;
@@ -215,7 +250,7 @@
           font-size: 2rem;
         }
         .pod-info {
-          height: 75vw;
+          /* height: 75vw; */
         }
       }
       @media screen and (min-width: 421px) {
@@ -243,7 +278,7 @@
           width: 75%;
         }
         .pod-info {
-          height: 67vw;
+          /* height: 67vw; */
         }
         .btn-wrap {
           margin-top: 1.2rem;
@@ -265,7 +300,7 @@
           width: 75%;
         }
         .pod-info {
-          height: 67vw;
+          /* height: 67vw; */
         }
       }
       @media screen and (min-width: 630px) {
@@ -277,7 +312,7 @@
           width: 60%;
         }
         .pod-info {
-          height: 67vw;
+          /* height: 67vw; */
         }
       }
       @media screen and (min-width: 630px) {
@@ -289,7 +324,7 @@
           width: 60%;
         }
         .pod-info {
-          height: 67vw;
+          /* height: 67vw; */
         }
       }
       @media screen and (min-height: 550px) and (min-width: 350px) {
@@ -297,7 +332,7 @@
           width: 73%;
         }
         .pod-info {
-          height: 67vw;
+          /* height: 67vw; */
         }
       }
       @media screen and (min-height: 550px) and (min-width: 428px) {
@@ -305,7 +340,7 @@
           width: 67%;
         }
         .pod-info {
-          height: 60vw;
+          /* height: 60vw; */
         }
         .btn-wrap {
           margin-top: 6vw;
@@ -316,7 +351,7 @@
           width: 60%;
         }
         .pod-info {
-          height: 55vw;
+          /* height: 55vw; */
         }
         .btn-wrap {
           margin-top: 3vw;
@@ -324,10 +359,12 @@
       }
       @media screen and (min-width: 604px) {
         .pod-info {
+          display: -ms-grid;
           display: grid;
           grid-template-areas:
             "img price"
             /* "footer footer" */;
+          -ms-grid-columns: 2fr 1fr;
           grid-template-columns: 2fr 1fr;
           /* gap: 1rem; */
           padding: 5px;
@@ -342,10 +379,17 @@
         .pod-price {
           grid-area: price;
           position: relative;
+          display: -webkit-box;
+          display: -ms-flexbox;
           display: flex;
+          -webkit-box-orient: vertical;
+          -webkit-box-direction: normal;
+          -ms-flex-direction: column;
           flex-direction: column;
           /* justify-content: flex-end; */
           margin-top: 4rem;
+          -webkit-box-align: start;
+          -ms-flex-align: start;
           align-items: flex-start;
         }
         .pod-promotion {
@@ -359,6 +403,16 @@
         }
         .pod-price__more-btn {
           display: inline-block;
+        }
+      }
+      @media screen and (min-width: 604px) {
+        .pod-img {
+          -ms-grid-row: 1;
+          -ms-grid-column: 1;
+        }
+        .pod-price {
+          -ms-grid-row: 1;
+          -ms-grid-column: 2;
         }
       }
     </style>
