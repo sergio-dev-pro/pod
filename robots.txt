@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /pod/comprar/
+Disallow: /pod/comprar/pagamento/
+
+Sitemap: https://fanciful-chebakia-0e6e2d.netlify.app/sitemap.xml

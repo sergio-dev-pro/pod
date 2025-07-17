@@ -3,6 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Compre pod recarregável com entrega rápida e grátis em Salvador. Temos os melhores preços em pods."
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -403,7 +407,7 @@
         align-items: center;
       }
     </style>
-    <title>Pod Online</title>
+    <title>Pod Vape Salvador - Entrega Grátis</title>
   </head>
   <body>
     <header style="background-color: #ffffff">
@@ -412,7 +416,11 @@
     <div class="pod">
       <div class="pod-info">
         <div class="pod-img">
-          <img id="img" src="./p.webp" />
+          <img
+            alt="Pod Ignite V50 5000 Puffs"
+            id="img"
+            src="../pod-vape.webp"
+          />
         </div>
         <h2 class="pod-title">Pod Ignite V50</h2>
         <div class="pod-pronto">
@@ -451,46 +459,46 @@
       <a class="more-btn">Aproveitar oferta</a>
     </div> -->
     <footer></footer>
-  </body>
-  <script>
-    let tempoRestante = 6 * 60; // 6 minutos em segundos
+    <script>
+      let tempoRestante = 6 * 60; // 6 minutos em segundos
 
-    const timerEl = document.getElementById("timer");
+      const timerEl = document.getElementById("timer");
 
-    function formatarTempo(segundos) {
-      const minutos = Math.floor(segundos / 60);
-      const seg = segundos % 60;
-      return `${String(minutos).padStart(2, "0")}:${String(seg).padStart(
-        2,
-        "0"
-      )}`;
-    }
-
-    function atualizarTemporizador() {
-      timerEl.textContent = formatarTempo(tempoRestante);
-      if (tempoRestante <= 0) {
-        clearInterval(intervalo);
-        // alert("Tempo esgotado!");
-      } else {
-        tempoRestante--;
+      function formatarTempo(segundos) {
+        const minutos = Math.floor(segundos / 60);
+        const seg = segundos % 60;
+        return `${String(minutos).padStart(2, "0")}:${String(seg).padStart(
+          2,
+          "0"
+        )}`;
       }
-    }
 
-    // Atualiza a cada 1 segundo
-    const intervalo = setInterval(atualizarTemporizador, 1000);
-    function copyPixCode() {
-      const pixInput = document.getElementById("pixCode");
-      pixInput.select();
-      pixInput.setSelectionRange(0, 99999); // Compatibilidade mobile
+      function atualizarTemporizador() {
+        timerEl.textContent = formatarTempo(tempoRestante);
+        if (tempoRestante <= 0) {
+          clearInterval(intervalo);
+          // alert("Tempo esgotado!");
+        } else {
+          tempoRestante--;
+        }
+      }
 
-      document.execCommand("copy");
+      // Atualiza a cada 1 segundo
+      const intervalo = setInterval(atualizarTemporizador, 1000);
+      function copyPixCode() {
+        const pixInput = document.getElementById("pixCode");
+        pixInput.select();
+        pixInput.setSelectionRange(0, 99999); // Compatibilidade mobile
 
-      const message = document.getElementById("copiedMessage");
-      message.style.display = "inline";
+        document.execCommand("copy");
 
-      setTimeout(() => {
-        message.style.display = "none";
-      }, 2000);
-    }
-  </script>
+        const message = document.getElementById("copiedMessage");
+        message.style.display = "inline";
+
+        setTimeout(() => {
+          message.style.display = "none";
+        }, 2000);
+      }
+    </script>
+  </body>
 </html>

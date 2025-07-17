@@ -3,6 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Compre pod recarregável com entrega rápida e grátis em Salvador. Temos os melhores preços em pods."
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -623,7 +627,7 @@
         }
       }
     </style>
-    <title>Pod Online</title>
+    <title>Pod Vape Salvador - Entrega Grátis</title>
   </head>
   <body>
     <header style="background-color: #ffffff">
@@ -633,7 +637,7 @@
       <div class="pod-info">
         <h2 class="pod-title">Pod Ignite V50</h2>
         <div class="pod-img">
-          <img id="img" src="../p.jpg" />
+          <img alt="Pod Ignite V50 5000 Puffs" id="img" src="../pod-vape.jpg" />
           <div class="pod-description-2">
             <p>
               O Ignite V50 vem com 5000 puffs e é equipado com uma bateria
@@ -690,141 +694,136 @@
       <a class="more-btn" href="comprar/index.html">Aproveitar oferta</a>
     </div>
     <footer></footer>
+    <script>
+      const cepInput = document.getElementById("cep");
+      const mensagemErro = document.getElementById("mensagemErro");
+
+      // Adiciona máscara enquanto digita
+      cepInput.addEventListener("input", () => {
+        let cep = cepInput.value.replace(/\D/g, ""); // remove não dígitos
+
+        if (cep.length > 5) {
+          cep = cep.slice(0, 5) + "-" + cep.slice(5, 8);
+        }
+
+        cepInput.value = cep;
+
+        // Valida automaticamente quando completar os 9 caracteres
+        if (cep.length === 9) {
+          var isValid = validarCep(cep);
+          if (isValid) {
+            consultarFrete(cep);
+          }
+        } else {
+          mensagemErro.textContent = "";
+        }
+      });
+
+      // Função para validar o CEP
+      function validarCep(cepComMascara) {
+        const cepSemMascara = cepComMascara.replace("-", "");
+
+        const regexCep = /^[0-9]{8}$/;
+
+        if (regexCep.test(cepSemMascara)) {
+          mensagemErro.textContent = "";
+          console.log("✅ CEP válido:", cepSemMascara);
+          return true;
+          // Aqui você pode chamar a API ViaCEP ou calcular frete
+        } else {
+          mensagemErro.textContent =
+            "CEP inválido. Verifique e tente novamente.";
+          console.log("❌ CEP inválido");
+          return false;
+        }
+      }
+      async function consultarFrete(cep) {
+        const url =
+          "https://cors-anywhere.herokuapp.com/" +
+          "https://private-anon-60dd73d27c-frenetapi.apiary-mock.com/shipping/quote";
+
+        const headers = {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          token: "5B4A3BCFRB348R432BR873FRE0AD45D9541B",
+        };
+
+        const body = {
+          SellerCEP: "41770800",
+          RecipientCEP: "41603135",
+          ShipmentInvoiceValue: 320.685,
+          ShippingServiceCode: null,
+          ShippingItemArray: [
+            {
+              Height: 2,
+              Length: 33,
+              Quantity: 1,
+              Weight: 1.18,
+              Width: 47,
+              SKU: "IDW_54626",
+              Category: "Running",
+            },
+          ],
+          RecipientCountry: "BR",
+        };
+
+        try {
+          const response = await fetch(url, {
+            method: "POST",
+            headers: headers,
+            body: JSON.stringify(body),
+          });
+
+          if (!response.ok) {
+            throw new Error(`Erro: ${response.status} ${response.statusText}`);
+          }
+
+          const data = await response.json();
+          document.getElementById("resultado").textContent = JSON.stringify(
+            data,
+            null,
+            2
+          );
+        } catch (error) {
+          document.getElementById(
+            "resultado"
+          ).textContent = `Erro na requisição:\n${error}`;
+        }
+      }
+
+      const largura = window.innerWidth;
+      const altura = window.innerHeight;
+
+      console.log("Largura:", largura + "px");
+      console.log("Altura:", altura + "px");
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org/",
+        "@type": "Product",
+        "name": "Pod Ignite V50",
+        "image": ["https://pod-server-hdkh.onrender.com/imgs/pod-vape.jpg"],
+        "description": "Pod Ignite com até 5000 puffs. Produto de alta qualidade e com entrega grátis em Salvador.",
+        "sku": "pod-ignite-v50-5000puffs",
+        "mpn": "123456",
+        "brand": {
+          "@type": "Brand",
+          "name": "Ignite"
+        },
+        "offers": {
+          "@type": "Offer",
+          "url": "https://fanciful-chebakia-0e6e2d.netlify.app/pod",
+          "priceCurrency": "BRL",
+          "price": "69.90",
+          "priceValidUntil": "2025-12-31",
+          "itemCondition": "https://schema.org/NewCondition",
+          "availability": "https://schema.org/InStock",
+          "seller": {
+            "@type": "Organization",
+            "name": "Sua Loja de Pods"
+          }
+        }
+      }
+    </script>
   </body>
-  <script>
-    const cepInput = document.getElementById("cep");
-    const mensagemErro = document.getElementById("mensagemErro");
-
-    // Adiciona máscara enquanto digita
-    cepInput.addEventListener("input", () => {
-      let cep = cepInput.value.replace(/\D/g, ""); // remove não dígitos
-
-      if (cep.length > 5) {
-        cep = cep.slice(0, 5) + "-" + cep.slice(5, 8);
-      }
-
-      cepInput.value = cep;
-
-      // Valida automaticamente quando completar os 9 caracteres
-      if (cep.length === 9) {
-        var isValid = validarCep(cep);
-        if (isValid) {
-          consultarFrete(cep);
-        }
-      } else {
-        mensagemErro.textContent = "";
-      }
-    });
-
-    // Função para validar o CEP
-    function validarCep(cepComMascara) {
-      const cepSemMascara = cepComMascara.replace("-", "");
-
-      const regexCep = /^[0-9]{8}$/;
-
-      if (regexCep.test(cepSemMascara)) {
-        mensagemErro.textContent = "";
-        console.log("✅ CEP válido:", cepSemMascara);
-        return true;
-        // Aqui você pode chamar a API ViaCEP ou calcular frete
-      } else {
-        mensagemErro.textContent = "CEP inválido. Verifique e tente novamente.";
-        console.log("❌ CEP inválido");
-        return false;
-      }
-    }
-    async function consultarFrete(cep) {
-      const url =
-        "https://cors-anywhere.herokuapp.com/" +
-        "https://private-anon-60dd73d27c-frenetapi.apiary-mock.com/shipping/quote";
-
-      const headers = {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        token: "5B4A3BCFRB348R432BR873FRE0AD45D9541B",
-      };
-
-      const body = {
-        SellerCEP: "41770800",
-        RecipientCEP: "41603135",
-        ShipmentInvoiceValue: 320.685,
-        ShippingServiceCode: null,
-        ShippingItemArray: [
-          {
-            Height: 2,
-            Length: 33,
-            Quantity: 1,
-            Weight: 1.18,
-            Width: 47,
-            SKU: "IDW_54626",
-            Category: "Running",
-          },
-        ],
-        RecipientCountry: "BR",
-      };
-
-      try {
-        const response = await fetch(url, {
-          method: "POST",
-          headers: headers,
-          body: JSON.stringify(body),
-        });
-
-        if (!response.ok) {
-          throw new Error(`Erro: ${response.status} ${response.statusText}`);
-        }
-
-        const data = await response.json();
-        document.getElementById("resultado").textContent = JSON.stringify(
-          data,
-          null,
-          2
-        );
-      } catch (error) {
-        document.getElementById(
-          "resultado"
-        ).textContent = `Erro na requisição:\n${error}`;
-      }
-    }
-    // async function consultarFrete(cep) {
-    //     console.log('consultarFrete cep', cep);
-    //   const cepOrigem = "41770-800"; // Seu CEP de origem
-    //   const cepDestino = cep;
-
-    //   //   if (!cepDestino) {
-    //   //     alert('Informe o CEP de destino!');
-    //   //     return;
-    //   //   }
-
-    //   const urlCorreios = `https://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx?nCdEmpresa=&sDsSenha=&sCepOrigem=${cepOrigem}&sCepDestino=${cepDestino}&nVlPeso=1&nCdFormato=1&nVlComprimento=20&nVlAltura=10&nVlLargura=15&nVlDiametro=0&sCdMaoPropria=N&nVlValorDeclarado=0&sCdAvisoRecebimento=N&nCdServico=04510&StrRetorno=xml`;
-
-    //   const urlProxy = `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(
-    //     urlCorreios
-    //   )}`;
-
-    //   try {
-    //     const resposta = await fetch(urlProxy);
-    //     const data = await resposta.json();
-
-    //     const parser = new DOMParser();
-    //     const xml = parser.parseFromString(data.contents, "text/xml");
-
-    //     const valor = xml.querySelector("Valor").textContent;
-    //     const prazo = xml.querySelector("PrazoEntrega").textContent;
-
-    //     document.getElementById("resultado").innerHTML = `
-    //       <strong>Valor do frete:</strong> R$ ${valor}<br>
-    //       <strong>Prazo de entrega:</strong> ${prazo} dia(s) úteis
-    //     `;
-    //   } catch (erro) {
-    //     console.error(erro);
-    //     alert("Erro ao consultar o frete. Tente novamente.");
-    //   }
-    // }
-    const largura = window.innerWidth;
-    const altura = window.innerHeight;
-
-    console.log("Largura:", largura + "px");
-    console.log("Altura:", altura + "px");
-  </script>
 </html>
