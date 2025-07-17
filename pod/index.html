@@ -304,6 +304,32 @@
       .pod-description p {
         font-size: 0.8rem;
       }
+      .pod-description-2 {
+        margin-top: 10rem;
+        /* padding: 0.8rem 1rem; */
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        bottom: -1rem;
+        margin: 0 2rem;
+        display: none;
+      }
+      .pod-description-2 p {
+        font-size: 0.8rem;
+      }
+      .pod-description-3 {
+        /* margin-top: 10rem; */
+        /* padding: 0.8rem 1rem; */
+        /* position: absolute; */
+        /* bottom: 0;
+        left: 0; */
+        /* bottom: -1rem; */
+        margin: 0 2rem 1rem 0;
+        display: none;
+      }
+      .pod-description-3 p {
+        font-size: 0.8rem;
+      }
       .pod-price__more-btn {
         border-width: 1px;
         padding: 0.5rem 1rem;
@@ -373,6 +399,12 @@
         }
         .pod-info {
           /* height: 75vw; */
+        }
+        .pod-description-2 {
+          display: inline;
+        }
+        .pod-description {
+          display: none;
         }
       }
       @media screen and (min-width: 421px) {
@@ -484,15 +516,21 @@
           display: -ms-grid;
           display: grid;
           grid-template-areas:
-            "img price"
+            "title title" "img lado-direito"
             /* "footer footer" */;
           -ms-grid-columns: 2fr 1fr;
           grid-template-columns: 2fr 1fr;
           /* gap: 1rem; */
           padding: 5px;
         }
+        .pod-info-container {
+          bottom: 0px;
+        }
         .pod-title {
+          grid-area: title;
+          position: relative;
           padding-left: 1rem;
+          margin-bottom: 0;
         }
         .pod-img {
           grid-area: img;
@@ -513,6 +551,13 @@
           -webkit-box-align: start;
           -ms-flex-align: start;
           align-items: flex-start;
+          padding-left: 0;
+        }
+        .pod__vendidos {
+          margin-left: 0.2rem;
+        }
+        .pod-description {
+          margin-top: 0;
         }
         .pod-promotion {
           margin-bottom: 1rem;
@@ -526,6 +571,20 @@
         .pod-price__more-btn {
           display: inline-block;
         }
+        .pod-frete {
+          margin-right: 1rem !important;
+        }
+      }
+      @media screen and (min-width: 604px) {
+        .pod-title {
+          -ms-grid-row: 1;
+          -ms-grid-column: 1;
+          -ms-grid-column-span: 2;
+        }
+        .pod-img {
+          -ms-grid-row: 2;
+          -ms-grid-column: 1;
+        }
       }
       @media screen and (min-width: 604px) {
         .pod-img {
@@ -535,6 +594,32 @@
         .pod-price {
           -ms-grid-row: 1;
           -ms-grid-column: 2;
+        }
+      }
+      @media screen and (min-width: 372px) {
+        .pod-description {
+          padding: 0.8rem 6vw;
+        }
+      }
+      @media screen and (min-width: 604px) {
+        .pod-info-container {
+          position: relative;
+        }
+        .pod-price {
+          margin-top: 0.8rem;
+        }
+        .pod-frete {
+          margin: 0;
+          margin-bottom: 0.7rem;
+          /* margin-bottom: 1rem; */
+        }
+      }
+      @media screen and (min-width: 733px) {
+        .pod-description-2 {
+          display: none;
+        }
+        .pod-description-3 {
+          display: block;
         }
       }
     </style>
@@ -549,6 +634,13 @@
         <h2 class="pod-title">Pod Ignite V50</h2>
         <div class="pod-img">
           <img id="img" src="../p.jpg" />
+          <div class="pod-description-2">
+            <p>
+              O Ignite V50 vem com 5000 puffs e é equipado com uma bateria
+              recarregável que dura de 2 a 4 semanas, dependendo do uso de cada
+              pessoa.
+            </p>
+          </div>
         </div>
         <div class="pod-info-container">
           <span class="pod__vendidos">236 vendidos</span>
@@ -562,7 +654,6 @@
               <span class="price-descoint">R$ 79,90</span>
               <span class="price">R$ 59,90</span>
             </div>
-            <a class="pod-price__more-btn">Saber mais</a>
           </div>
           <div class="pod-frete">
             <i class="fas fa-truck"></i>
@@ -573,15 +664,20 @@
               </p>
             </div>
           </div>
+          <div class="pod-description-3">
+            <p>
+              O Ignite V50 vem com 5000 puffs e é equipado com uma bateria
+              recarregável que dura de 2 a 4 semanas, dependendo do uso de cada
+              pessoa.
+            </p>
+          </div>
+          <div>
+            <a class="pod-price__more-btn" href="comprar/index.html"
+              >Aproveitar oferta</a
+            >
+          </div>
         </div>
       </div>
-      <!-- <div class="cep-container">
-        <label for="cep">Calcular frete:</label>
-        <input type="text" id="cep" maxlength="9" placeholder="00000-000" />
-        <span>Digite seu CEP</span>
-        <div id="mensagemErro" class="cep-container__erro"></div>
-      </div> -->
-      <div id="resultado"></div>
     </div>
     <div class="pod-description">
       <p>
