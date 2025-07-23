@@ -13,6 +13,10 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
     <style>
       *,
       *::before,
@@ -50,7 +54,8 @@
         font-size: 0.6rem;
         padding: 0.2rem;
       }
-      h2 {
+      h2,
+      h3 {
         word-break: break-word;
         font-family: "Montserrat", sans-serif;
         font-optical-sizing: auto;
@@ -176,7 +181,7 @@
         border-radius: 2rem;
       }
       .pod-price {
-        position: absolute;
+        /* position: absolute; */
         z-index: 2;
         bottom: 0;
         left: 0;
@@ -188,6 +193,7 @@
         -ms-flex-align: center;
         align-items: center;
         padding-left: 1rem;
+        margin-top: 1rem;
       }
       .price-descoint {
         text-decoration: line-through;
@@ -419,13 +425,73 @@
           -ms-grid-column: 2;
         }
       }
+      .destaques {
+        /* background: #f1f1f1;
+        padding: 40px 20px; */
+        text-align: center;
+        font-family: "Inter", sans-serif;
+      }
+
+      .destaques h2 {
+        color: #1a1a1a;
+        font-size: 2rem;
+        margin-bottom: 30px;
+      }
+
+      .beneficios {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1rem;
+      }
+
+      .beneficio {
+        background: transparent;
+        border-radius: 16px;
+        /* padding: 24px; */
+        /* box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05); */
+        transition: transform 0.3s ease;
+        display: flex;
+        /* justify-content: center; */
+        align-items: center;
+      }
+
+      .beneficio:hover {
+        transform: translateY(-5px);
+      }
+
+      .beneficio i {
+        font-size: 1.5rem;
+        margin-right: 1rem;
+        /* color: #5b5b5b; */
+        /* margin-bottom: 16px; */
+      }
+
+      .beneficio h3 {
+        /* color: #8f00ff !important; */
+        font-size: 1rem;
+        color: #333;
+        margin-bottom: 8px;
+        margin: 0;
+        font-weight: 300;
+      }
+
+      .beneficio p {
+        color: #666;
+        font-size: 0.95rem;
+      }
+      .pod-info-vantagens-e-preco {
+        /* position: absolute; */
+        z-index: 2;
+        /* bottom: 0; */
+        /* left: 0; */
+      }
     </style>
     <title>🔥 Pod Ignite V50 - 5000 Puffs com Frete Grátis em Salvador</title>
   </head>
   <body>
-    <header style="background-color: #ffffff">
+    <!-- <header style="background-color: #ffffff">
       <span>Salvador - BA</span>
-    </header>
+    </header> -->
     <div class="banner">
       <div class="banner__media">
         <img
@@ -453,23 +519,39 @@
     </div>
     <div class="pod">
       <div class="pod-info">
-        <h2 class="pod-title">Pod Ignite V50</h2>
+        <h2 class="pod-title">V50 black</h2>
         <div class="pod-img">
-          <img alt="Pod Ignite V50 5000 Puffs" id="img" src="./pod-vape.jpg" />
+          <img alt="Pod Ignite V50 5000 Puffs" id="img" src="./pod-vape.webp" />
         </div>
-        <div class="pod-price">
-          <div class="pod-promotion">
-            <h5 style="color: #fff; font-size: 0.5rem; white-space: nowrap">
-              Promoção
-            </h5>
+        <div class="pod-info-vantagens-e-preco">
+          <section class="destaques">
+            <!-- <h2>Por que escolher o Ignite V50?</h2> -->
+            <div class="beneficios">
+              <div class="beneficio">
+                <i class="fas fa-burn"></i>
+                <h3>Vaporize por dias.</h3>
+              </div>
+              <div class="beneficio">
+                <i class="fas fa-battery-full"></i>
+                <h3>Recarga simples e rápida.</h3>
+              </div>
+            </div>
+          </section>
+
+          <div class="pod-price">
+            <div class="pod-promotion">
+              <h5 style="color: #fff; font-size: 0.5rem; white-space: nowrap">
+                Promoção
+              </h5>
+            </div>
+            <div class="prices">
+              <span class="price-descoint">R$ 99,90</span>
+              <span class="price">R$ 79,90</span>
+            </div>
+            <a class="pod-price__more-btn" href="pod/index.html"
+              >Aproveitar oferta</a
+            >
           </div>
-          <div class="prices">
-            <span class="price-descoint">R$ 99,90</span>
-            <span class="price">R$ 79,90</span>
-          </div>
-          <a class="pod-price__more-btn" href="pod/index.html"
-            >Aproveitar oferta</a
-          >
         </div>
       </div>
       <div class="btn-wrap">
