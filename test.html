@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Histórico Acadêmico - UNIFACS</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        color: #333;
+        padding: 20px;
+      }
+
+      .container {
+        max-width: 100%;
+        max-width: 800px;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        margin-top: 1rem;
+      }
+
+      h1,
+      h2 {
+        color: #004080;
+        margin-bottom: 10px;
+      }
+
+      .table-wrapper {
+        overflow-x: auto;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 600px;
+        margin-top: 15px;
+        margin-bottom: 30px;
+      }
+
+      th,
+      td {
+        border: 1px solid #ccc;
+        padding: 12px;
+        text-align: left;
+      }
+
+      th {
+        background-color: #004080;
+        color: #fff;
+      }
+
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+
+      .footer {
+        text-align: center;
+        margin-top: 40px;
+        color: #666;
+        font-size: 0.9em;
+      }
+
+      @media (max-width: 600px) {
+        .container {
+          padding: 20px;
+        }
+
+        table {
+          font-size: 14px;
+        }
+      }
+      header {
+        display: flex;
+        justify-content: center;
+        position: relative;
+      }
+      .hamburger {
+        position: absolute;
+        z-index: 2;
+        left: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="logo">
+        <img src="./unifacs.svg" alt="Logo UNIFACS" />
+      </div>
+      <div class="hamburger" onclick="toggleMenu()">☰</div>
+    </header>
+    <div class="container">
+      <h1>Histórico Acadêmico</h1>
+      <p><strong>Nome:</strong> Sergio Lucas Oliveira Saraiva</p>
+      <p><strong>Curso:</strong> Análise e Desenvolvimento de Sistemas</p>
+
+      <h2>1º Semestre</h2>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Disciplina</th>
+              <th>Carga Horária</th>
+              <th>Nota Final</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Lógica de Programação</td>
+              <td>60h</td>
+              <td>8.2</td>
+              <td>Aprovado</td>
+            </tr>
+            <tr>
+              <td>Fundamentos da Computação</td>
+              <td>60h</td>
+              <td>7.5</td>
+              <td>Aprovado</td>
+            </tr>
+            <tr>
+              <td>Matemática Aplicada</td>
+              <td>60h</td>
+              <td>6.9</td>
+              <td>Aprovado</td>
+            </tr>
+            <tr>
+              <td>Comunicação e Expressão</td>
+              <td>60h</td>
+              <td>7.8</td>
+              <td>Aprovado</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>2º Semestre</h2>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Disciplina</th>
+              <th>Carga Horária</th>
+              <th>Nota Final</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Programação Orientada a Objetos</td>
+              <td>60h</td>
+              <td>8.4</td>
+              <td>Aprovado</td>
+            </tr>
+            <tr>
+              <td>Engenharia de Software</td>
+              <td>60h</td>
+              <td>7.1</td>
+              <td>Aprovado</td>
+            </tr>
+            <tr>
+              <td>Banco de Dados I</td>
+              <td>60h</td>
+              <td>6.7</td>
+              <td>Aprovado</td>
+            </tr>
+            <tr>
+              <td>Sistemas Operacionais</td>
+              <td>60h</td>
+              <td>7.9</td>
+              <td>Aprovado</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </body>
+</html>
